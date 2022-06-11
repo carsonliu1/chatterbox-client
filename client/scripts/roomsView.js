@@ -13,10 +13,17 @@ var RoomsView = {
 
   render: function() {
     // TODO: Render out the list of rooms.
+    let listOfRooms = Rooms._data
+    listOfRooms.forEach((ele) => {
+      renderRoom(ele)
+    })
+
   },
 
   renderRoom: function(roomname) {
-    // TODO: Render out a single room.
+    let $roomname = $('<option></option').val(roomname)
+    $roomname.text(roomname)
+    RoomsView.$select.append($roomname)
   },
 
   handleChange: function(event) {

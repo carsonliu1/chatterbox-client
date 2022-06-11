@@ -10,12 +10,20 @@ var MessagesView = {
     // when this view loads.
   },
 
-  render: function() {
+  render: function(data) {
     // TODO: Render _all_ the messages.
+    MessagesView.$chats.empty()
+    console.log(Messages._data)
+    let arr = Messages.retrieve(data)
+    for (let value of arr) {
+      MessagesView.renderMessage(value)
+    }
   },
 
   renderMessage: function(message) {
-    // TODO: Render a single message.
+    //TODO: Render a message
+    let $message = MessageView.render(message)
+    MessagesView.$chats.append($message)
   },
 
   handleClick: function(event) {
