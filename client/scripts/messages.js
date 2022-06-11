@@ -14,6 +14,7 @@ var Messages = {
       // console.log(Messages._data[count], 'inside')
       count++
     }
+    console.log(Messages._data)
     MessagesView.render(Messages._data)
    },
   // TODO: Define methods which allow you to retrieve from,

@@ -20,6 +20,4 @@ var Friends = {
       Friends._data.delete(name)
     }
   }
-
-
 };

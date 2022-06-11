@@ -40,5 +40,6 @@ var MessagesView = {
     // (this should add the sender to the user's friend list).
     let name = event.target.innerHTML
     Friends.toggleStatus(name)
+    console.log('hello')
   }
 };
