@@ -8,15 +8,24 @@ var MessagesView = {
   initialize: function() {
     // TODO: Perform any work which needs to be done
     // when this view loads.
+    MessagesView.$chats.click(MessagesView.handleClick)
   },
 
   render: function(data) {
     // TODO: Render _all_ the messages.
     MessagesView.$chats.empty()
-    console.log(Messages._data)
     let arr = Messages.retrieve(data)
-    for (let value of arr) {
-      MessagesView.renderMessage(value)
+    if (Rooms._selectedRoom === '') {
+      for (let value of arr) {
+        MessagesView.renderMessage(value)
+      }
+    } else {
+      let filteredRooms = arr.filter((obj) => {
+        return obj.roomname === Rooms._selectedRoom
+      })
+        for (let value of filteredRooms) {
+          MessagesView.renderMessage(value)
+      }
     }
   },
 
@@ -29,6 +38,7 @@ var MessagesView = {
   handleClick: function(event) {
     // TODO: handle a user clicking on a message
     // (this should add the sender to the user's friend list).
+    let name = event.target.innerHTML
+    Friends.toggleStatus(name)
   }
-
 };

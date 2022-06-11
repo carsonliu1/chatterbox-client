@@ -19,7 +19,7 @@ var App = {
     App.startSpinner();
     App.fetch(App.stopSpinner);
     App.stopSpinner();
-
+    setInterval(App.fetch, 30000)
     // TODO: Make sure the app loads data from the API
     // continually, instead of just once at the start.
   },
@@ -27,7 +27,7 @@ var App = {
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
       // examine the response from the server request:
-      Messages.update(data, MessagesView.render)
+      Messages.update(data)
       Rooms.update()
       console.log(data);
 

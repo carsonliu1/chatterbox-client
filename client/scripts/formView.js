@@ -16,7 +16,7 @@ var FormView = {
     let message = {}
     message.username = App.username
     message.text = $('#message').val()
-    message.roomname = $('#rooms').val()
+    message.roomname = $('#rooms select').val()
     $('#send').trigger('reset')
     Parse.create(message)
     // TODO: Currently, this is all handleSubmit does.

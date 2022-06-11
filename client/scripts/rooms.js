@@ -5,34 +5,28 @@
 var Rooms = {
 
   // TODO: Define how you want to store the list of rooms
-  _data: [],
-  uniqueRooms: {},
-  selectedRoom: "",
+  _data: new Set(),
+  _selectedRoom: '',
   // TODO: Define methods which allow you to add rooms, update the list,
   // mark a room as selected, etc.
 
   update: () => {
-    let allMessages = Messages.retrieve();
-    for (let obj of allMessages) {
-      if (Rooms.uniqueRooms[obj.roomname] === undefined) {
-        Rooms.uniqueRooms[obj.roomname] = true;
-        Rooms._data.push(obj.roomname);
-      }
-    }
+    //iterate over all messages
+    //  add room property of messages to data
+    Messages.retrieve().forEach(function(currentMessage) {
+      Rooms._data.add(currentMessage.roomname);
+    });
+    RoomsView.render()
   },
 
   add: (room) => {
-    //if new room is added, add room to _data
-    if (uniqueRooms[room] === undefined) {
-      Rooms.uniqueRooms[room] = true;
-      Rooms._data.push(room);
-      Rooms.selectedRoom = room
-    }
+    Rooms._data.add(room);
+    Rooms._selectedRoom = room
   },
 
-  getMyRoom: () => {
-    return Rooms.selectedRoom
+  retrieve: () => {
+    let roomArr = Array.from(Rooms._data)
+    return roomArr.sort();
+    //{1, 2, 3} ---> [1, 2, 3]
   }
 };
-
-console.log(Rooms._data)
